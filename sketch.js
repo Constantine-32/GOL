@@ -75,6 +75,7 @@ function setup() {
   background(255, 0, 200)
   frameRate(10)
   stroke('#111')
+  gol.draw()
 }
 
 function windowResized() {
