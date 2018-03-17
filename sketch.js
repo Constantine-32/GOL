@@ -1,11 +1,11 @@
 'use strict';
 
 class GOL {
-  constructor(dim, row, col) {
+  constructor(dim, row, col, den) {
     this.dim = dim
     this.row = row
     this.col = col
-    this.mat = this.initmatrix(0.3)
+    this.mat = this.initmatrix(den)
   }
 
   initmatrix(den) {
@@ -59,7 +59,7 @@ class GOL {
 const dim = 10;
 const col = 40;
 const row = 40;
-const gol = new GOL(dim, row, col)
+const gol = new GOL(dim, row, col, 0.3)
 
 let cnv
 
