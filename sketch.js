@@ -45,7 +45,7 @@ class GOL {
     for (let row = 0; row < this.row; row++) {
       for (let col = 0; col < this.col; col++) {
         fill(this.mat[row][col] ? '#fff' : '#000')
-        rect(col * this.dim, row * this.dim, this.dim, this.dim);
+        rect(col * this.dim, row * this.dim, this.dim, this.dim)
       }
     }
     this.update()
@@ -56,9 +56,9 @@ class GOL {
   }
 }
 
-const dim = 10;
-const col = 40;
-const row = 40;
+const dim = 10
+const col = 40
+const row = 40
 const gol = new GOL(dim, row, col, 0.3)
 
 let cnv
