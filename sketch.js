@@ -1,8 +1,8 @@
 'use strict';
 
-class GOL {
-  constructor(dim, row, col, den) {
-    this.dim = dim
+class GOLClass {
+  constructor(row, col, den) {
+    this.dim = 10
     this.row = row
     this.col = col
     this.mat = this.initmatrix(den)
@@ -42,10 +42,12 @@ class GOL {
   }
 
   draw() {
+    const dim = height / this.row
+    stroke('#0e0e0e')
     for (let row = 0; row < this.row; row++) {
       for (let col = 0; col < this.col; col++) {
         fill(this.mat[row][col] ? '#fff' : '#000')
-        rect(col * this.dim, row * this.dim, this.dim, this.dim)
+        rect(col * dim, row * dim, dim, dim)
       }
     }
     this.update()
@@ -56,32 +58,40 @@ class GOL {
   }
 }
 
-const dim = 10
-const col = 40
-const row = 40
-const gol = new GOL(dim, row, col, 0.3)
-
-let cnv
-
-function centerCanvas() {
-  let x = (windowWidth - width) / 2
-  let y = (windowHeight - height) / 2
-  cnv.position(x, y)
-}
+const GOL = new GOLClass(50, 50, 0.3)
 
 function setup() {
-  cnv = createCanvas(col * dim + 1, row * dim + 1)
-  centerCanvas()
-  background(255, 0, 200)
+  createCenteredCanvas()
   frameRate(10)
-  stroke('#111')
-  gol.draw()
+  draw()
 }
 
 function windowResized() {
-  centerCanvas()
+  createCenteredCanvas()
+  draw()
+}
+
+function createCenteredCanvas() {
+  const size =
+    (windowWidth <= 540 || windowHeight <= 630) +
+    (windowWidth <= 960 || windowHeight <= 800)
+  const dim = [600, 450, 300][size]
+  createCanvas(dim, dim).position(
+    (windowWidth - width) / 2,
+    (windowHeight - height) / 2
+  )
 }
 
 function draw() {
-  gol.draw()
+  GOL.draw()
+  drawFrame()
+}
+
+function drawFrame() {
+  stroke('#000')
+  strokeWeight(1)
+  line(0, 0, width, 0)
+  line(0, 0, 0, height)
+  line(width-1, height-1, width-1, 0)
+  line(width-1, height-1, 0, height-1)
 }
